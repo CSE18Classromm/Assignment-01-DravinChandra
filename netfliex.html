@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Watch TV Shows & Movies</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    :root {
+    --netflix-red: #e50914;
+    --dark-bg: #141414;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Navbar with Gradient */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 4%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, transparent);
+    z-index: 1000;
+    transition: background 0.5s;
+}
+
+.nav-left { display: flex; align-items: center; gap: 25px; }
+.logo { width: 100px; cursor: pointer; }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    font-size: 0.85rem;
+}
+
+.nav-links li { cursor: pointer; transition: 0.3s; color: #e5e5e5; }
+.nav-links li:hover { color: #b3b3b3; }
+.nav-links li.active { color: white; font-weight: bold; }
+
+.nav-right { display: flex; align-items: center; gap: 20px; font-size: 1.1rem; }
+.profile { display: flex; align-items: center; gap: 5px; }
+.profile img { width: 32px; border-radius: 4px; }
+
+/* Billboard Section */
+.billboard {
+    position: relative;
+    height: 85vh;
+    background-image: url('https://wallpaperaccess.com/full/1510502.jpg');
+    background-size: cover;
+    background-position: center top;
+}
+
+.billboard-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 10%, transparent 60%),
+                linear-gradient(to top, var(--dark-bg) 5%, transparent 30%);
+}
+
+.billboard-content {
+    position: absolute;
+    top: 35%;
+    left: 4%;
+    width: 35%;
+}
+
+.title-img { width: 100%; margin-bottom: 20px; }
+.description {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.billboard-btns { display: flex; gap: 10px; }
+
+.btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.play { background-color: white; color: black; }
+.play:hover { background-color: rgba(255,255,255,0.7); }
+.info { background-color: rgba(109, 109, 110, 0.7); color: white; }
+.info:hover { background-color: rgba(109, 109, 110, 0.4); }
+
+/* Movie Rows */
+.movie-container {
+    margin-top: -100px;
+    padding-left: 4%;
+    position: relative;
+    z-index: 10;
+}
+
+.row { margin-bottom: 40px; }
+.row-title { font-size: 1.4rem; margin-bottom: 15px; }
+
+.row-posters {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px 0;
+    gap: 10px;
+}
+
+.row-posters::-webkit-scrollbar { display: none; }
+
+.poster {
+    max-height: 150px;
+    object-fit: contain;
+    width: 100%;
+    transition: transform 450ms;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.poster:hover {
+    transform: scale(1.08);
+}
+
+.poster-large {
+    max-height: 350px;
+    object-fit: contain;
+    width: 100%;
+    transition: transform 450ms;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.poster-large:hover {
+    transform: scale(1.1);
+}
+</style>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="logo" alt="Netflix">
+            <ul class="nav-links">
+                <li class="active">Home</li>
+                <li>TV Shows</li>
+                <li>Movies</li>
+                <li>New & Popular</li>
+                <li>My List</li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>DVD</span>
+            <i class="fa-solid fa-bell"></i>
+            <div class="profile">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="User">
+                <i class="fa-solid fa-caret-down"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="billboard">
+        <div class="billboard-overlay"></div>
+        <div class="billboard-content">
+            <img src="https://occ-0-116-114.1.nflxso.net/dnm/api/v6/LmEnxtiAuzez9jIK9ad6qoZK7Y4/AAAABVp_v17o5_eF9oT_vW5vR6-G_N5C5S-Mv1Z3L9-k-z1r_D_T-X_Y7-g.png" class="title-img" alt="Stranger Things Title">
+            <p class="description">
+                When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.
+            </p>
+            <div class="billboard-btns">
+                <button class="btn play"><i class="fa-solid fa-play"></i> Play</button>
+                <button class="btn info"><i class="fa-solid fa-circle-info"></i> More Info</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="movie-container">
+        <section class="row">
+            <h2 class="row-title">Trending Now</h2>
+            <div class="row-posters">
+                <img src="https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmY1.jpg" class="poster" alt="Movie">
+                <img src="https://image.tmdb.org/t/p/original/jRXYjXuvqW7YpSqiDcyzV2asUu3.jpg" class="poster" alt="Movie">
+                <img src="https://image.tmdb.org/t/p/original/8Gxv2mEhG19beFa9kRj9P7UrZUz.jpg" class="poster" alt="Movie">
+                <img src="https://image.tmdb.org/t/p/original/uDsvTUfS1AB7h4ETmXR7cy9C8EP.jpg" class="poster" alt="Movie">
+                <img src="https://image.tmdb.org/t/p/original/7WsyChQLEhUXBMvYJ7pY96cyqS1.jpg" class="poster" alt="Movie">
+                <img src="https://image.tmdb.org/t/p/original/6v6p8YpS3Y7pSqiDcyzV2asUu3.jpg" class="poster" alt="Movie">
+            </div>
+        </section>
+
+        <section class="row">
+            <h2 class="row-title">Netflix Originals</h2>
+            <div class="row-posters large">
+                <img src="https://image.tmdb.org/t/p/original/49Wf96Svtqjaasv9c93q9PEgh3X.jpg" class="poster-large" alt="Original">
+                <img src="https://image.tmdb.org/t/p/original/6xS8C6Svtqjaasv9c93q9PEgh3X.jpg" class="poster-large" alt="Original">
+                <img src="https://image.tmdb.org/t/p/original/30S8C6Svtqjaasv9c93q9PEgh3X.jpg" class="poster-large" alt="Original">
+                <img src="https://image.tmdb.org/t/p/original/20S8C6Svtqjaasv9c93q9PEgh3X.jpg" class="poster-large" alt="Original">
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
